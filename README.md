@@ -20,17 +20,18 @@ pddlstream$ ./downward/build.py
 ### ITAMPS
 This repo contains the interface for PDDLStream and utility functions for model training.
 ```
-$ git clone git@github.com:shinwat/itamps.git
+$ git clone --branch corl git@github.com:shinwat/itamps.git
 $ cd itamps
 itamps$ conda env create -f environment/environment.yml
-itamps$ pip install -e .
+itamps$ conda activate itamps
+(itamps) itamps$ pip install -e .
 ```
 
 ### Clone this repo
 ```
-itamps$ cd ..
-$ git clone git@github.com:shinwat/decs.git
-$ cd decs
+(itamps) itamps$ cd ..
+(itamps) $ git clone git@github.com:shinwat/decs.git
+(itamps) $ cd decs
 ```
 
 ### (Optional) Set up Weights & Biases
@@ -70,8 +71,8 @@ decs/
 
 ### Reproducing results from the paper
 ```
-decs$ chmod +x decs.sh
-decs$ ./decs.sh <ablation> <from_seed> <to_seed> # note: this script can take a long time
+(itamps) decs$ chmod +x decs.sh
+(itamps) decs$ ./decs.sh <ablation> <from_seed> <to_seed> # note: this script can take a long time
 ```
 The choices are between `fd`, `uniform`, `feasibility`, `diversity`, `disagreement`, `schedule`, and `feedbackless`. The paper uses 20 seeds (0 - 19).
 
@@ -79,8 +80,8 @@ The choices are between `fd`, `uniform`, `feasibility`, `diversity`, `disagreeme
 The following scripts bundles the individual results from each ablation into 2 folders:
 `<ABLATION>_success_rates.csv` and `<ABLATION>_admittance_rates.csv`.
 ```
-decs$ cd scripts
-scripts$ python bundle_results.py --directory "../data/results/<ABLATION>"  # repeat for every ablation
+(itamps) decs$ cd scripts
+(itamps) scripts$ python bundle_results.py --directory "../data/results/<ABLATION>"  # repeat for every ablation
 ```
 Make a folder called `success` and `admittance` under `results`:
 ```
@@ -92,6 +93,15 @@ results$ mv <ABLATION>/<ABLATION>_admittance_rates.csv admittance # repeat for e
 ```
 Finally, call the plotting script:
 ```
-scripts$ make_plots.py --directory "../data/results/success" # for the success rate
-scripts$ make_plots.py --directory "../data/results/admittance" # for the feasibility rate
+(itamps) scripts$ make_plots.py --directory "../data/results/success" # for the success rate
+(itamps) scripts$ make_plots.py --directory "../data/results/admittance" # for the feasibility rate
 ```
+
+### Collecting your own environment / task configurations
+For convenience, I have included the configurations used in the experiments under `data/confs`.
+However, if you want to collect your own, you can use the following script:
+```
+(itamps) script$ python collect_confs.py --path "../data/confs" --size 100
+```
+This script also allows you to collect planner-generated trajectories and some statistics.
+If you want to visualize the simulator, pass the argument `--direct False`.
