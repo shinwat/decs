@@ -12,7 +12,7 @@ Designing environments for composable skills
 ### PDDLStream (fork)
 This fork has a *new robot*, [Tiago](https://pal-robotics.com/robots/tiago/), integrated in the PyBullet environment.
 ```
-$ git clone --recursive --branch feasibility git@github.com:shinwat/pddlstream.git
+$ git clone --recursive --branch feasibility https://github.com/shinwat/pddlstream.git
 $ cd pddlstream
 pddlstream$ git submodule update --init --recursive
 pddlstream$ ./downward/build.py
@@ -20,7 +20,7 @@ pddlstream$ ./downward/build.py
 ### ITAMPS
 This repo contains the interface for PDDLStream and utility functions for model training.
 ```
-$ git clone --branch corl git@github.com:shinwat/itamps.git
+$ git clone --branch corl https://github.com/shinwat/itamps.git
 $ cd itamps
 itamps$ conda env create -f environment/environment.yml
 itamps$ conda activate itamps
@@ -30,7 +30,7 @@ itamps$ conda activate itamps
 ### Clone this repo
 ```
 (itamps) itamps$ cd ..
-(itamps) $ git clone git@github.com:shinwat/decs.git
+(itamps) $ git clone https://github.com/shinwat/decs.git
 (itamps) $ cd decs
 ```
 
